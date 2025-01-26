@@ -23,7 +23,8 @@ from browser_use.controller.service import Controller
 from browser_use.telemetry.views import (
     AgentEndTelemetryEvent,
     AgentRunTelemetryEvent,
-    AgentStepErrorTelemetryEvent,
+    # AgentStepErrorTelemetryEvent, # не находит
+    AgentStepTelemetryEvent,
 )
 from browser_use.utils import time_execution_async
 from langchain_core.language_models.chat_models import BaseChatModel

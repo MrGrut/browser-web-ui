@@ -1,3 +1,6 @@
+# backend folder
+browser-use/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

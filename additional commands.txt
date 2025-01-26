@@ -1,0 +1,13 @@
+# initial installation
+py -m venv venv 
+.\venv\Scripts\activate
+pip install -r requirements.txt  
+# install browser-use in dev mode
+pip install -e ..\browser-use
+# playwright install
+$env:PLAYWRIGHT_BROWSERS_PATH="B:\Coding\Playwright"
+pip install playwright
+playwright install
+# установка докера в кастомную директорию
+PowerShell as admin: Start-Process -Wait -FilePath "Docker Desktop Installer.exe" -ArgumentList "install", "-accept-license", "--installation-dir=D:\Docker\Docker", "--wsl-default-data-root=D:\Docker\wsl", "--windows-containers-default-data-root=D:\Docker"
+# запуск с докером
