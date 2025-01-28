@@ -623,7 +623,7 @@ def create_ui(config, theme_name="Ocean"):
             with gr.TabItem("⚙️ Agent Settings", id=1):
                 with gr.Group():
                     agent_type = gr.Radio(
-                        ["org", "custom"],
+                        ["org", "custom", "grut"],
                         label="Agent Type",
                         value=config['agent_type'],
                         info="Select the type of agent to use",
@@ -654,6 +654,39 @@ def create_ui(config, theme_name="Ocean"):
                         value=config['tool_call_in_content'],
                         info="Enable Tool Calls in content",
                     )
+
+            with gr.TabItem("🤖 Grut", id=8, visible=False) as grut_tab:
+                with gr.Group():
+                    gr.Markdown("### 🤖 Grut Settings")
+                    grut_enabled = gr.Checkbox(
+                        label="Enable Grut",
+                        value=False,
+                        info="Enable Grut's functionality"
+                    )
+                    grut_mode = gr.Radio(
+                        ["Assistant", "Developer", "Tester"],
+                        label="Grut Mode",
+                        value="Assistant",
+                        info="Select Grut's operation mode"
+                    )
+                    grut_memory = gr.Slider(
+                        minimum=1,
+                        maximum=100,
+                        value=50,
+                        step=1,
+                        label="Memory Capacity",
+                        info="Maximum number of memories Grut can store"
+                    )
+
+            # Add this after the Grut tab definition
+            def update_grut_tab_visibility(agent):
+                return gr.update(visible=agent == "grut")
+
+            agent_type.change(
+                fn=update_grut_tab_visibility,
+                inputs=[agent_type],
+                outputs=[grut_tab]
+            )
 
             with gr.TabItem("🔧 LLM Configuration", id=2):
                 with gr.Group():
